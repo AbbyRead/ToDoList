@@ -106,7 +106,13 @@ public class ListManager {
                 return Boolean.parseBoolean(line);
             }
         } catch (IOException | NumberFormatException e) {
-            System.err.println("Error loading boolean or file not found: " + e.getMessage());
+            System.err.println("Error loading boolean or file not found (if you're seeing it on a first instance bootup, ignore this): " + e.getMessage());
+            try {
+                FileWriter writer = new FileWriter(FILE_NAME_BOOLEAN);
+                writer.write("false");
+            } catch (IOException ignored) {
+
+            }
         }
         return false;
 
@@ -138,7 +144,14 @@ public class ListManager {
                 return (line);
             }
         } catch (IOException | NumberFormatException e) {
-            System.err.println("Error loading goal string or file not found: " + e.getMessage());
+            System.err.println("Error loading goal string or file not found (if you're seeing it on a first instance bootup, ignore this): " + e.getMessage());
+            try {
+                FileWriter writer = new FileWriter(FILE_NAME_GOAL);
+                writer.write(" ");
+            } catch (IOException ignored) {
+
+            }
+
         }
         return "";
 
@@ -149,7 +162,7 @@ public class ListManager {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME_MODE))) {
             writer.write(String.valueOf(mode));
         } catch (IOException e) {
-            System.err.println("Error saving goal string: " + e.getMessage());
+            System.err.println("Error saving mode string: " + e.getMessage());
         }
     }
 
@@ -161,7 +174,13 @@ public class ListManager {
                 return (line);
             }
         } catch (IOException | NumberFormatException e) {
-            System.err.println("Error loading goal string or file not found: " + e.getMessage());
+            System.err.println("Error loading goal string or file not found (if you're seeing it on a first instance bootup, ignore this): " + e.getMessage());
+            try {
+                FileWriter writer = new FileWriter(FILE_NAME_MODE);
+                writer.write("Goal");
+            } catch (IOException ignored) {
+
+            }
         }
         return "Goal";
 
@@ -181,7 +200,13 @@ public class ListManager {
                 return Integer.parseInt(line);
             }
         } catch (IOException | NumberFormatException e) {
-            System.err.println("Error loading goal string or file not found: " + e.getMessage());
+            System.err.println("Error loading goal string or file not found (if you're seeing it on a first instance bootup, ignore this): " + e.getMessage());
+            try {
+                FileWriter writer = new FileWriter(FILE_NAME_NUM);
+                writer.write("1");
+            } catch (IOException ignored) {
+
+            }
         }
         return 1;
 
